@@ -1,3 +1,4 @@
+import random
 ####
 # Each team's file must define four tokens:
 #     team_name: a string
@@ -7,10 +8,38 @@
 ####
 
 team_name = 'Boom Boom' # Only 10 chars displayed.
-strategy_name = 'Collude, Betray, Betray, Collude'
-strategy_description = ''
+strategy_name = 'Collude, lead to Betray'
+strategy_description = 'Always collude, if they betray at one point in the round, then always betray them.'
     
 def move(my_history, their_history, my_score, their_score):
+    if 'b' in their_history:
+      return 'b'
+    else:
+      return 'c'
+
+team_name = 'Boom Boom' # Only 10 chars displayed.
+strategy_name = 'Collude, Betray, but all at random.'
+strategy_description = 'When randomly chosen between numbers 0 and 1, it will randomly select a value accordingly and either collude, or betray.'
+
+def move(my_history, their_history, my_score, their_score):
+    random_integer = random.randint(0,1)
+    if(random_integer == 0):
+      return 'c'
+    else:
+      return 'b'
+
+team_name = 'Boom Boom' # Only 10 chars displayed.
+strategy_name = 'Collude Collude, Betray Betray'
+strategy_description = 'Formulating the pattern of colluding two times in a row, then alternating to betray twice in a row, and repeating the process over and over again.'
+
+def move(my_history, their_history, my_score, their_score):
+    b_variable = len(their_history)/2
+    b_variable = b_variable %2
+    if b_variable == 0:
+      return 'b'
+    else
+      return 'c' 
+
     ''' Arguments accepted: my_history, their_history are strings.
     my_score, their_score are ints.
     
